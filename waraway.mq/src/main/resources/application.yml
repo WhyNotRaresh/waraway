@@ -1,0 +1,16 @@
+#rabbitmq
+spring:
+  profiles:
+    active: usage_message
+  rabbitmq:
+    host: host.docker.internal
+    password: guest
+    username: guest
+    port: 5672
+    queue: waraway
+    exchange: waraway.exchange
+    routingkey: waraway.rk
+
+logging:
+  level:
+    org: ERROR

@@ -1,0 +1,58 @@
+<div class="modal fade" id="filterSearch" tabindex="-1" aria-labelledby="filterSearchModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content m-4">
+      <div class="modal-header">
+        <h5 class="modal-title" id="filterSearchModal">Filter</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="row m-2">
+          <label>Choose a date</label>
+          <div class="input-group">
+            <input [(ngModel)]="filter.date"
+                   [matDatepicker]="pickerDateEquals"
+                   class="form-control"
+                   placeholder="Select or enter date">
+            <mat-datepicker-toggle matSuffix class="bg-white" [for]="pickerDateEquals"></mat-datepicker-toggle>
+          <mat-datepicker #pickerDateEquals></mat-datepicker>
+          </div>
+        </div>
+
+        <div class="row m-2">
+          <div class="form-group">
+            <label>Number of seats</label>
+            <input type="number"
+                   class="form-control"
+                   placeholder="Enter a seats number"
+                   [(ngModel)]="filter.personNumber">
+          </div>
+        </div>
+
+        <div class="row m-4">
+          <div class="form-check form-switch">
+            <input class="form-check-input"
+                   type="checkbox"
+                   id="petsSwitch"
+                   name="petsAllowed"
+                   [(ngModel)]="filter.pets"
+                   checked>
+            <label class="form-check-label" for="petsSwitch">Allow pets</label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal">Close</button>
+        <button type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                (click)="save()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

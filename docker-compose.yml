@@ -1,0 +1,155 @@
+version: "3.8"
+
+services:
+  # Databse container.
+  postgres-db:
+    image: postgres:14.1-alpine
+    container_name: postgres
+    ports:
+      - 5433:5432
+    restart: always
+    environment:
+      - POSTGRES_DB=waraway
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pass
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./waraway/init.sql:/docker-entrypoint-initdb.d/1.sql
+    networks:
+      - backendNet
+
+  # Database monitoring container.
+  postgres-exporter:
+    image: prometheuscommunity/postgres-exporter
+    environment:
+      DATA_SOURCE_NAME: "postgresql://postgres:pass@host.docker.internal:5433/waraway?sslmode=disable"
+    networks:
+      - backendNet
+      - prometheus
+
+  # Backend container.
+  war-away-be:
+    build:
+      context: ./waraway/
+      target: runner
+    container_name: waraway_be
+    depends_on:
+      - postgres-db
+      - rabbit-mq
+    ports:
+      - 8080:8080
+    networks:
+      - frontendNet
+      - backendNet
+      - rabbitmq
+      - loki
+  
+  # Mail sender container.
+  war-away-mail-sender:
+    build:
+      context: ./waraway.mq/
+      target: runner
+    container_name: waraway_mail_sender
+    ports:
+      - 465:465
+    depends_on:
+      - postgres-db
+      - rabbit-mq
+    networks:
+      - rabbitmq
+
+  # Frontend container.
+  war-away-fe:
+    build:
+      context: ./war-away-fe/
+      target: dev
+    container_name: waraway_fe
+    command: npm run start:dev
+    ports:
+      - 4200:4200
+    volumes:
+      - ./war-away-fe/src:/app/src
+    networks:
+      - frontendNet
+    
+  # Rabbitmq container.
+  rabbit-mq:
+    image: rabbitmq:3.9.8-management-alpine
+    restart: on-failure
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - ./data/rabbitmq:/var/lib/rabbitmq/mnesia/
+    networks:
+      - rabbitmq
+      - prometheus
+
+  # Portrainer container.
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./data/portainer:/data
+
+  # Grafana container.
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin_waraway
+      - GF_SECURITY_ADMIN_PASSWORD=admin_pass
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+    networks:
+      - prometheus
+      - loki
+
+  # Prometheus container.
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./configs/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - prometheus
+
+  # Loki container.
+  loki:
+    image: grafana/loki:2.2.1
+    container_name: loki
+    entrypoint:
+      - /usr/bin/loki
+      - -config.file=/etc/config/loki.yml
+    volumes:
+      - ./configs/loki/loki.yml:/etc/config/loki.yml
+      - ./configs/loki/wal:/wal
+    ports:
+      - 3100:3100
+    networks:
+      - loki
+
+
+networks:
+  frontendNet:
+  backendNet:
+  rabbitmq:
+  prometheus:
+  loki:
+
+
+volumes:
+  db:
+    driver: local

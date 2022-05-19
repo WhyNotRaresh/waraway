@@ -1,0 +1,36 @@
+auth0:
+  audience: http://localhost:8080
+spring:
+  rabbitmq:
+    host: host.docker.internal
+    port: 5672
+    username: guest
+    password: guest
+    queue: waraway
+    exchange: waraway.exchange
+    routingkey: waraway.rk
+  datasource:
+    url: jdbc:postgresql://host.docker.internal:5433/waraway
+    username: postgres
+    password: pass
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-udt7uy1u.us.auth0.com/
+  profiles:
+    active:
+      - usage_message
+      - waraway
+      - sender
+logging:
+  level:
+    org: ERROR

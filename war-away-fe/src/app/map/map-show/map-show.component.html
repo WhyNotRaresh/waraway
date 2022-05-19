@@ -1,0 +1,17 @@
+<app-filter-search></app-filter-search>
+<div class="p-2 bg-gradient"
+     id="mapHeader">
+  <div class="d-flex justify-content-between">
+    <div>
+      <button class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#filterSearch"
+        *ngIf="router.url === '/search'">
+        Filter
+      </button>
+    </div>
+    <div id="searchDiv"></div>
+  </div>
+</div>
+
+<div id="viewDiv"></div>

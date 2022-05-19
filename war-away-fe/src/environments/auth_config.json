@@ -1,0 +1,8 @@
+{
+  "domain": "https://dev-udt7uy1u.us.auth0.com",
+  "clientId": "1idlA1F4r0brKGi2PKpyDdi8M8yunD92",
+  "audience": "http://localhost:8080",
+  "apiUri": "http://localhost:8080",
+  "appUri": "http://localhost:4200",
+  "errorPath": "/error"
+}

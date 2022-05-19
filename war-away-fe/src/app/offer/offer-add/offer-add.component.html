@@ -1,0 +1,68 @@
+<app-map-select-route></app-map-select-route>
+
+<div class="container-fluid">
+  <form class="add-form bg-light" [formGroup]="addForm" (ngSubmit)="onSubmit()" *ngIf="addForm">
+
+    <!--  Choose destination and arrival  -->
+    <div *ngIf="!this.selectedRoute" class="full-width">
+      <button class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#selectRouteModal">
+        Choose departure/arrival point *</button>
+    </div>
+
+    <!--  The destination/arrival was chosen, show info  -->
+    <div class="route-info" *ngIf="this.selectedRoute" class="full-width">
+      <span>Departure:   </span><span class="grey-span">{{this.selectedRoute.originAddress}}</span><br>
+      <span>Arrival:   </span><span class="grey-span">{{this.selectedRoute.destAddress}}</span><br>
+      <span>Distance:   </span><span class="grey-span">{{this.selectedRoute.distance}} km</span>
+      <div class="row"><button class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#selectRouteModal">
+        Edit</button></div>
+    </div>
+
+    <br>
+    <!--  The rest of the form  -->
+
+    <div>
+      <mat-form-field class="full-width">
+        <mat-label>Choose departure date</mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="departureDateFC">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Enter number of seats" [formControlName]="'personNumberFC'">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Enter contact phone number" [formControlName]="'phoneNumberFC'">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-checkbox [formControlName]="'petsFC'">I accept pets</mat-checkbox>
+    </div>
+
+    <br>
+    <div class="full-width">
+        <textarea
+          type="input"
+          class="form-control"
+          id="inputDetails"
+          appearance ="fill"
+          placeholder="Add a short description"
+          [formControlName]="'descriptionFC'">
+        </textarea>
+    </div>
+
+    <br>
+    <button class="btn btn-primary" type="submit">Add offer</button>
+  </form>
+</div>

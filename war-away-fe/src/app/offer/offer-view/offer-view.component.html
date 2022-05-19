@@ -1,0 +1,25 @@
+<div class="modal fade" id="offerDetails" tabindex="-1" aria-labelledby="offerViewDetails" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="offerViewDetails">Add a ride offer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div *ngIf="offers.selectedOffer" class="modal-body">
+        <span>Departure:   </span><span class="grey-span">{{this.offers.selectedOffer.departurePoint}}</span><br>
+        <span>Arrival:   </span><span class="grey-span">{{this.offers.selectedOffer.arrivalPoint}}</span><br>
+        <span>Distance:   </span><span class="grey-span">{{this.offers.selectedOffer.distance}} km</span><br>
+        <span>Date:   </span><span class="grey-span">{{this.offers.selectedOffer.departureDate}}</span><br>
+        <span *ngIf="offers.selectedOffer.pets">Pets allowed:   <span class="grey-span">YES</span></span>
+        <span *ngIf="!offers.selectedOffer.pets">Pets allowed:   <span class="grey-span">NO</span></span><br>
+        <span>Contact number:   </span><span class="grey-span">{{this.offers.selectedOffer.phoneNumber}}</span><br>
+        <span>Other details:   </span><span class="grey-span">{{this.offers.selectedOffer.description}}</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

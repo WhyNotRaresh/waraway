@@ -1,0 +1,41 @@
+<div class="mt-4 pt-2 p-5 bg-gradient text-white rounded">
+  <h1>Waraway</h1>
+  <h4>Find a free ride to escape war. Share a trip with a volunteer to get to safety</h4>
+</div>
+
+<div class="row justify-content-around m-5">
+
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front bg-gradient p-3">
+        <h3>Find ride offers</h3>
+        <img src="assets/find_ride.png" height="350">
+      </div>
+      <div class="flip-card-back bg-gradient pt-5">
+        <h4>Click here to find rides around you or to a destination!</h4>
+        <button class="btn btn-lg btn-outline-primary" routerLink="/search">Search</button>
+        <hr>
+        <h4>Or subscribe to receive emails for your needs.</h4>
+        <button class="btn btn-lg btn-outline-primary" data-bs-toggle="modal" data-bs-target="#subscribeModal">Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front bg-gradient p-3">
+        <h3>Add ride offers</h3>
+        <img src="assets/add_ride.png" height="350">
+      </div>
+      <div class="flip-card-back bg-gradient pt-5">
+        <h4>Want to help?</h4>
+        <h5>Start adding ride offers</h5>
+        <button *ngIf="isLoggedIn; else loginNeeded" class="btn btn-lg btn-outline-primary" routerLink="/offer/add">Add ride</button>
+        <ng-template #loginNeeded>
+          <button class="btn btn-lg btn-outline-primary" data-bs-toggle="modal" data-bs-target="#loginRequiredModal">Add ride</button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+</div>
