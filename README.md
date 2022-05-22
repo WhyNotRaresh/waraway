@@ -1,12 +1,20 @@
 ### Tema aplicatiei
 
-Aplicatia implementeaza un sistem de publish - subscribe a curselor cu masina de la o destinatie sau catre o destinatie. Astfel, am implementat un mecanism de log in prin care doar utilizatorii autentificati pot publica curse, iar utilizatorii neautentificati au permisiuni doar de subscribe. Notificarea se face prin trimiterea unui e-mail.
+Aplicatia dezvoltata se numeste WarAway si este o platforma Web unde refugiatii isi pot vedea anunțuri de curse gratuite pentru a putea pleca din zonele afectate de război. 
+
+Refugiatii se pot conecta la platforma pentru a vedea o lista cu anunțuri. Acestea pot fi vizualizate pe harta pentru a vedea anunțuri din apropiere. Se poate realiza o filtrare pe harta pentru a obține rezultate cât mai relevante. Pentru postarea unui anunț este necesara existenta unui cont pentru conectarea la aplicația. 
+
+Pentru autorizare si autentificare s-a folosit aplicația thirt-party Auth0. S-a implementat un serviciu de alertare prin email folosind RabbitMQ (refugiatii se pot abona sa primeasca notificari dacă apare vreun anunț  într-o locație aleasă de ei).
 
 De exemplu:
 - Utilizatorul A da subscribe pentru plecarea din Kiev. Atunci cand se posteaza o cursa care pleaca din Kiev el va fi notificat prin email, indiferent de destinatie
 - Utilizatorul B da subscribe pentru Varsovia ca destinatie. Astfel, el va fi notificat de fiecare data cand o cursa cu destinatia Varsovia va fi incarcata in aplicatie
 
-Aplicatia nu suporta un mecanism de subscribe atat pe baza de orasul de plecare, cat si pe baza de orasul de sosire
+Aplicatia nu suporta un mecanism de subscribe atat pe baza de orasul de plecare, cat si pe baza de orasul de sosire.
+
+## Wireframes si Prototype
+
+https://www.figma.com/file/X6XJzcQZcHT7RwOL92fJmz/WarAway?node-id=18%3A90
 
 ### Setup
 
@@ -28,6 +36,12 @@ IDP:
 - Badita Rares Octavian - 342C3
 - Alexa Robert Ionut - 342C3
 
+<<<<<<< HEAD
 PWeb:
 - Cosmina Mindru
 - Stefania Gherasie
+=======
+Porturi relevante pe localhost:
+- 4200 -> aplicatie
+- 9000 -> portainer
+- 3000 -> grafana
