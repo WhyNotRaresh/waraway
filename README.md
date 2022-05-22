@@ -1,4 +1,4 @@
-### Tema aplicatiei
+## Tema aplicatiei
 
 Aplicatia dezvoltata se numeste WarAway si este o platforma Web unde refugiatii isi pot vedea anunțuri de curse gratuite pentru a putea pleca din zonele afectate de război. 
 
@@ -12,7 +12,7 @@ De exemplu:
 
 Aplicatia nu suporta un mecanism de subscribe atat pe baza de orasul de plecare, cat si pe baza de orasul de sosire.
 
-## Wireframes si Prototype
+### Wireframes si Prototype
 
 https://www.figma.com/file/X6XJzcQZcHT7RwOL92fJmz/WarAway?node-id=18%3A90
 
@@ -36,12 +36,6 @@ IDP:
 - Badita Rares Octavian - 342C3
 - Alexa Robert Ionut - 342C3
 
-<<<<<<< HEAD
-PWeb:
-- Cosmina Mindru
-- Stefania Gherasie
-=======
-Porturi relevante pe localhost:
-- 4200 -> aplicatie
-- 9000 -> portainer
-- 3000 -> grafana
+Pweb:
+- Gherasie Stefania Elena - 342C5
+- Mandru Cosmina - 342C5
