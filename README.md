@@ -9,10 +9,10 @@ Porturi relevante pe localhost:
 - 3000 -> grafana
 
 
-Echipa PWeb:
+### Echipa PWeb:
 * Gherasie Stefania Elena 342C5
 * Mandru Cosmina 342C5
-Echipa IDP:
+### Echipa IDP:
 * Badita Rares Octavian
 * Alexa Robert
 
@@ -24,10 +24,6 @@ Refugiatii se pot conecta la platforma pentru a vedea o lista cu anunțuri. Aces
 
 Pentru autorizare si autentificare s-a folosit aplicația thirt-party Auth0. S-a implementat un serviciu de alertare prin email folosind RabbitMQ (refugiatii se pot abona sa primeasca notificari dacă apare vreun anunț  într-o locație aleasă de ei)
 
-## Arhitectura macro (la nivel de sistem)
-
-
-## Arhitectura de domeniu (la nivel de date)
 
 ## Wireframes si Prototype
 
