@@ -6,7 +6,7 @@
         </http>
         <format>
             <label>
-                <pattern>app=waraway-be,host=${HOSTNAME},level=%level</pattern>
+                <pattern>app=waraway-mail-sender,host=${HOSTNAME},level=%level</pattern>
             </label>
             <message>
                 <pattern>l=%level h=${HOSTNAME} c=%logger{20} t=%thread | %msg %ex</pattern>

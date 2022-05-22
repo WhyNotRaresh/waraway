@@ -25,7 +25,7 @@ export class SubscribeComponent implements OnInit {
   });
 
   constructor(private subscrieService: SubscribeService) {
-    esriConfig.apiKey = "AAPK32e6d43055034688b9c4ea0e99730538UfAT0WFZa5p6IXz7mwwzsgy1ltMI9I4UVdqz6o-XYKSRchJLwhecU_2JMfEb1ICk";
+    esriConfig.apiKey = "AAPKbec7da2645c64a3f8afeead680c42d4fpyXywjAt8vY_wNfdPaTM4ykhreqWHXmWYPG1_wWtbOHr-U8bBBuRQfiIDvUfHLZ9";
   }
 
   ngOnInit(): void {
